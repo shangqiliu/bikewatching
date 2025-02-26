@@ -1,0 +1,54 @@
+html, body {
+    margin: 0;
+    padding: 5;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+  }
+     
+  #map {
+    width: 100%;    /* Adjust width to your desired size */
+    height: 100%;   /* Adjust height to your desired size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
+    border-radius: 8px; /* Optional: rounded corners */
+  }
+  #map svg {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  svg circle {
+    pointer-events: auto;
+  }
+  #map circle,
+  .legend > div {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(
+      in oklch,
+      var(--color-departures) calc(100% * var(--departure-ratio)),
+      var(--color-arrivals)
+    );
+    fill: var(--color);
+  }
+  
+  /* Legend container styling */
+  .legend {
+    display: flex;
+    gap: 1px;         /* Minimal gap prevents colors from touching */
+    margin-block: 1em; /* Space above and below the legend */
+  }
+  
+  /* Legend swatch styling (Design 1: Blocks) */
+  .legend > div {
+    flex: 1;                   /* Each swatch takes equal horizontal space */
+    padding: 0.5em 1em;        /* More horizontal padding for balanced look */
+    text-align: center;        /* Center text; you could adjust per swatch if needed */
+    font-weight: bold;
+    color: var(--color);              /* /* Ensure sufficient contrast with the background */
+  }
+
